@@ -1,0 +1,1185 @@
+ <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>LawBlitz — Indian Constitution & BNS</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link
+            href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap"
+            rel="stylesheet">
+        <style>
+            :root {
+                --bg: #080c14;
+                --bg2: #0e1520;
+                --bg3: #141e2e;
+                --surface: #182030;
+                --surface2: #1e2a3e;
+                --border: rgba(255, 255, 255, 0.07);
+                --border2: rgba(255, 255, 255, 0.14);
+                --accent: #f59e0b;
+                --accent2: #fcd34d;
+                --accent-glow: rgba(245, 158, 11, 0.3);
+                --blue: #60a5fa;
+                --blue-dim: rgba(96, 165, 250, 0.15);
+                --green: #34d399;
+                --green-dim: rgba(52, 211, 153, 0.15);
+                --red: #f87171;
+                --red-dim: rgba(248, 113, 113, 0.15);
+                --purple: #a78bfa;
+                --purple-dim: rgba(167, 139, 250, 0.15);
+                --gold: #fcd34d;
+                --gold-dim: rgba(252, 211, 77, 0.15);
+                --text: #f0f4ff;
+                --text2: #8090b0;
+                --text3: #445060;
+                --r-sm: 8px;
+                --r-md: 14px;
+                --r-lg: 20px;
+                --r-xl: 28px;
+            }
+
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                font-family: 'Syne', sans-serif;
+                background: var(--bg);
+                color: var(--text);
+                min-height: 100vh;
+                display: flex;
+                align-items: flex-start;
+                justify-content: center;
+                padding: 16px;
+                overflow-x: hidden;
+            }
+
+            body::before {
+                content: '';
+                position: fixed;
+                inset: 0;
+                z-index: 0;
+                background-image: linear-gradient(rgba(245, 158, 11, 0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(245, 158, 11, 0.025) 1px, transparent 1px);
+                background-size: 40px 40px;
+                pointer-events: none;
+            }
+
+            body::after {
+                content: '';
+                position: fixed;
+                top: -20%;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 80vw;
+                height: 50vh;
+                background: radial-gradient(ellipse, rgba(245, 158, 11, 0.06) 0%, transparent 70%);
+                pointer-events: none;
+                z-index: 0;
+            }
+
+            .wrap {
+                position: relative;
+                z-index: 1;
+                width: 100%;
+                max-width: 700px;
+                padding-bottom: 40px;
+            }
+
+            /* HEADER */
+            .header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 24px;
+                padding-top: 8px;
+            }
+
+            .logo {
+                font-size: 24px;
+                font-weight: 800;
+                letter-spacing: -0.5px;
+                background: linear-gradient(135deg, #fcd34d, #f59e0b);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            .logo span {
+                font-size: 13px;
+                font-weight: 400;
+                -webkit-text-fill-color: var(--text2);
+                margin-left: 8px;
+            }
+
+            .hbtns {
+                display: flex;
+                gap: 8px;
+            }
+
+            .ibtn {
+                width: 36px;
+                height: 36px;
+                background: var(--surface);
+                border: 1px solid var(--border2);
+                border-radius: var(--r-sm);
+                cursor: pointer;
+                font-size: 15px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.15s;
+                color: var(--text2);
+            }
+
+            .ibtn:hover {
+                background: var(--surface2);
+                color: var(--text);
+                border-color: var(--accent);
+            }
+
+            /* TABS */
+            .tabs {
+                display: flex;
+                gap: 4px;
+                background: var(--surface);
+                border: 1px solid var(--border);
+                border-radius: var(--r-lg);
+                padding: 4px;
+                margin-bottom: 20px;
+            }
+
+            .tab {
+                flex: 1;
+                padding: 10px;
+                text-align: center;
+                font-size: 13px;
+                font-weight: 700;
+                color: var(--text2);
+                cursor: pointer;
+                border-radius: var(--r-md);
+                transition: all 0.2s;
+                border: none;
+                background: none;
+                font-family: 'Syne', sans-serif;
+            }
+
+            .tab:hover {
+                color: var(--text);
+            }
+
+            .tab.active {
+                background: linear-gradient(135deg, var(--accent), #d97706);
+                color: #000;
+                box-shadow: 0 4px 16px var(--accent-glow);
+            }
+
+            /* CARDS */
+            .card {
+                background: var(--surface);
+                border: 1px solid var(--border);
+                border-radius: var(--r-xl);
+                padding: 24px 22px;
+                margin-bottom: 16px;
+            }
+
+            .section-title {
+                font-size: 13px;
+                font-weight: 800;
+                letter-spacing: 2px;
+                text-transform: uppercase;
+                color: var(--accent);
+                margin-bottom: 14px;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .section-title::after {
+                content: '';
+                flex: 1;
+                height: 1px;
+                background: var(--border2);
+            }
+
+            /* SEARCH */
+            .search-wrap {
+                position: relative;
+                margin-bottom: 16px;
+            }
+
+            .search-input {
+                width: 100%;
+                background: var(--surface2);
+                border: 1px solid var(--border2);
+                border-radius: var(--r-md);
+                padding: 12px 16px 12px 40px;
+                color: var(--text);
+                font-size: 14px;
+                font-family: 'Syne', sans-serif;
+                outline: none;
+                transition: border-color 0.2s;
+            }
+
+            .search-input:focus {
+                border-color: var(--accent);
+            }
+
+            .search-icon {
+                position: absolute;
+                left: 14px;
+                top: 50%;
+                transform: translateY(-50%);
+                color: var(--text3);
+                font-size: 14px;
+            }
+
+            .search-count {
+                position: absolute;
+                right: 14px;
+                top: 50%;
+                transform: translateY(-50%);
+                font-size: 11px;
+                color: var(--text3);
+            }
+
+            /* PREAMBLE */
+            .preamble-box {
+                background: linear-gradient(135deg, rgba(245, 158, 11, 0.08), rgba(252, 211, 77, 0.05));
+                border: 1px solid rgba(245, 158, 11, 0.2);
+                border-radius: var(--r-lg);
+                padding: 20px;
+                font-size: 14px;
+                line-height: 1.8;
+                color: var(--text2);
+                font-style: italic;
+                margin-bottom: 16px;
+            }
+
+            .preamble-box strong {
+                color: var(--accent2);
+                font-style: normal;
+            }
+
+            /* PARTS */
+            .part-header {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                padding: 10px 14px;
+                background: var(--bg3);
+                border: 1px solid var(--border2);
+                border-radius: var(--r-md);
+                cursor: pointer;
+                transition: all 0.15s;
+                margin-bottom: 4px;
+                user-select: none;
+            }
+
+            .part-header:hover {
+                border-color: var(--accent);
+                background: rgba(245, 158, 11, 0.05);
+            }
+
+            .part-header.open {
+                border-color: var(--accent);
+                background: rgba(245, 158, 11, 0.08);
+            }
+
+            .part-num {
+                font-size: 10px;
+                font-weight: 800;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                color: var(--accent);
+                background: var(--gold-dim);
+                border: 1px solid rgba(252, 211, 77, 0.3);
+                border-radius: 6px;
+                padding: 2px 8px;
+                white-space: nowrap;
+            }
+
+            .part-name {
+                flex: 1;
+                font-size: 14px;
+                font-weight: 700;
+                color: var(--text);
+            }
+
+            .part-articles {
+                font-size: 11px;
+                color: var(--text3);
+                font-family: 'JetBrains Mono', monospace;
+                white-space: nowrap;
+            }
+
+            .part-chevron {
+                font-size: 11px;
+                color: var(--text3);
+                transition: transform 0.2s;
+            }
+
+            .part-header.open .part-chevron {
+                transform: rotate(180deg);
+            }
+
+            .articles-list {
+                display: none;
+                padding: 4px 0 8px 0;
+                display: grid;
+                gap: 3px;
+            }
+
+            .articles-list.hidden {
+                display: none;
+            }
+
+            /* ARTICLE ROWS */
+            .art-row {
+                display: flex;
+                align-items: flex-start;
+                gap: 10px;
+                padding: 8px 14px;
+                border-radius: var(--r-sm);
+                transition: background 0.12s;
+                cursor: default;
+            }
+
+            .art-row:hover {
+                background: var(--surface2);
+            }
+
+            .art-row.highlight {
+                background: rgba(245, 158, 11, 0.1);
+                border-left: 2px solid var(--accent);
+            }
+
+            .art-num {
+                font-size: 12px;
+                font-weight: 700;
+                color: var(--accent2);
+                font-family: 'JetBrains Mono', monospace;
+                min-width: 64px;
+                flex-shrink: 0;
+                line-height: 1.5;
+            }
+
+            .art-title {
+                font-size: 13px;
+                color: var(--text);
+                line-height: 1.5;
+            }
+
+            .art-tag {
+                display: inline-block;
+                font-size: 9px;
+                font-weight: 700;
+                padding: 1px 6px;
+                border-radius: 10px;
+                margin-left: 6px;
+                vertical-align: middle;
+            }
+
+            .tag-fr {
+                background: var(--blue-dim);
+                color: var(--blue);
+                border: 1px solid rgba(96, 165, 250, 0.3);
+            }
+
+            .tag-dp {
+                background: var(--green-dim);
+                color: var(--green);
+                border: 1px solid rgba(52, 211, 153, 0.3);
+            }
+
+            .tag-fd {
+                background: var(--purple-dim);
+                color: var(--purple);
+                border: 1px solid rgba(167, 139, 250, 0.3);
+            }
+
+            .tag-em {
+                background: var(--red-dim);
+                color: var(--red);
+                border: 1px solid rgba(248, 113, 113, 0.3);
+            }
+
+            .tag-rep {
+                background: var(--surface2);
+                color: var(--text3);
+                border: 1px solid var(--border);
+            }
+
+            .tag-key {
+                background: var(--gold-dim);
+                color: var(--gold);
+                border: 1px solid rgba(252, 211, 77, 0.3);
+            }
+
+            /* BNS CHAPTER */
+            .ch-header {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                padding: 10px 14px;
+                background: var(--bg3);
+                border: 1px solid var(--border2);
+                border-radius: var(--r-md);
+                cursor: pointer;
+                transition: all 0.15s;
+                margin-bottom: 4px;
+                user-select: none;
+            }
+
+            .ch-header:hover {
+                border-color: var(--purple);
+            }
+
+            .ch-header.open {
+                border-color: var(--purple);
+                background: rgba(167, 139, 250, 0.06);
+            }
+
+            .ch-num {
+                font-size: 10px;
+                font-weight: 800;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                color: var(--purple);
+                background: var(--purple-dim);
+                border: 1px solid rgba(167, 139, 250, 0.3);
+                border-radius: 6px;
+                padding: 2px 8px;
+                white-space: nowrap;
+            }
+
+            .ch-name {
+                flex: 1;
+                font-size: 14px;
+                font-weight: 700;
+                color: var(--text);
+            }
+
+            .ch-secs {
+                font-size: 11px;
+                color: var(--text3);
+                font-family: 'JetBrains Mono', monospace;
+                white-space: nowrap;
+            }
+
+            /* BNS SECTION ROWS */
+            .sec-row {
+                display: flex;
+                align-items: flex-start;
+                gap: 10px;
+                padding: 8px 14px;
+                border-radius: var(--r-sm);
+                transition: background 0.12s;
+            }
+
+            .sec-row:hover {
+                background: var(--surface2);
+            }
+
+            .sec-row.highlight {
+                background: rgba(167, 139, 250, 0.08);
+                border-left: 2px solid var(--purple);
+            }
+
+            .sec-num {
+                font-size: 12px;
+                font-weight: 700;
+                color: var(--purple);
+                font-family: 'JetBrains Mono', monospace;
+                min-width: 56px;
+                flex-shrink: 0;
+                line-height: 1.5;
+            }
+
+            .sec-body {
+                flex: 1;
+            }
+
+            .sec-title {
+                font-size: 13px;
+                color: var(--text);
+                font-weight: 600;
+                line-height: 1.5;
+            }
+
+            .sec-note {
+                font-size: 11px;
+                color: var(--text2);
+                margin-top: 2px;
+                line-height: 1.4;
+            }
+
+            .sec-ipc {
+                font-size: 10px;
+                color: var(--text3);
+                margin-top: 2px;
+                font-family: 'JetBrains Mono', monospace;
+            }
+
+            .sec-tag {
+                display: inline-block;
+                font-size: 9px;
+                font-weight: 700;
+                padding: 1px 6px;
+                border-radius: 10px;
+                margin-left: 6px;
+                vertical-align: middle;
+            }
+
+            .tag-new {
+                background: var(--green-dim);
+                color: var(--green);
+                border: 1px solid rgba(52, 211, 153, 0.3);
+            }
+
+            .tag-mod {
+                background: var(--blue-dim);
+                color: var(--blue);
+                border: 1px solid rgba(96, 165, 250, 0.3);
+            }
+
+            /* SCHEDULES */
+            .sched-row {
+                padding: 10px 14px;
+                border-radius: var(--r-sm);
+                border: 1px solid var(--border);
+                margin-bottom: 6px;
+                transition: all 0.15s;
+            }
+
+            .sched-row:hover {
+                border-color: var(--border2);
+                background: var(--surface2);
+            }
+
+            .sched-num {
+                font-size: 11px;
+                font-weight: 800;
+                color: var(--accent);
+                font-family: 'JetBrains Mono', monospace;
+            }
+
+            .sched-title {
+                font-size: 13px;
+                font-weight: 700;
+                color: var(--text);
+                margin: 2px 0;
+            }
+
+            .sched-desc {
+                font-size: 12px;
+                color: var(--text2);
+            }
+
+            /* QUIZ */
+            .quiz-card {
+                background: var(--bg3);
+                border: 1px solid var(--border2);
+                border-radius: var(--r-lg);
+                padding: 24px;
+                margin-bottom: 12px;
+            }
+
+            .quiz-meta {
+                display: flex;
+                gap: 8px;
+                margin-bottom: 14px;
+                flex-wrap: wrap;
+            }
+
+            .quiz-tag {
+                font-size: 10px;
+                font-weight: 700;
+                padding: 3px 10px;
+                border-radius: 20px;
+            }
+
+            .q-text {
+                font-size: 17px;
+                font-weight: 700;
+                color: var(--text);
+                line-height: 1.6;
+                margin-bottom: 18px;
+            }
+
+            .q-opts {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+
+            .q-opt {
+                padding: 12px 14px;
+                background: var(--surface2);
+                border: 1.5px solid var(--border2);
+                border-radius: var(--r-md);
+                cursor: pointer;
+                font-size: 13px;
+                font-weight: 600;
+                color: var(--text);
+                transition: all 0.15s;
+                text-align: left;
+                font-family: 'Syne', sans-serif;
+                word-break: break-word;
+            }
+
+            .q-opt:hover {
+                border-color: var(--accent);
+                background: rgba(245, 158, 11, 0.07);
+            }
+
+            .q-opt.correct {
+                border-color: var(--green) !important;
+                background: var(--green-dim) !important;
+                color: var(--green) !important;
+            }
+
+            .q-opt.wrong {
+                border-color: var(--red) !important;
+                background: var(--red-dim) !important;
+                color: var(--red) !important;
+            }
+
+            .q-feedback {
+                margin-top: 12px;
+                padding: 10px 14px;
+                border-radius: var(--r-sm);
+                font-size: 13px;
+                font-weight: 600;
+                display: none;
+            }
+
+            .q-feedback.show.ok {
+                display: block;
+                background: var(--green-dim);
+                color: var(--green);
+            }
+
+            .q-feedback.show.fail {
+                display: block;
+                background: var(--red-dim);
+                color: var(--red);
+            }
+
+            .quiz-stats {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 8px;
+                margin-bottom: 16px;
+            }
+
+            .qs-box {
+                background: var(--surface);
+                border: 1px solid var(--border);
+                border-radius: var(--r-md);
+                padding: 10px;
+                text-align: center;
+            }
+
+            .qs-val {
+                font-size: 20px;
+                font-weight: 800;
+                font-family: 'JetBrains Mono', monospace;
+                color: var(--text);
+            }
+
+            .qs-lbl {
+                font-size: 10px;
+                color: var(--text3);
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                margin-top: 2px;
+            }
+
+            .qs-box.a {
+                border-color: rgba(245, 158, 11, 0.3);
+            }
+
+            .qs-box.a .qs-val {
+                color: var(--accent2);
+            }
+
+            .qs-box.g {
+                border-color: rgba(52, 211, 153, 0.3);
+            }
+
+            .qs-box.g .qs-val {
+                color: var(--green);
+            }
+
+            .qs-box.r {
+                border-color: rgba(248, 113, 113, 0.3);
+            }
+
+            .qs-box.r .qs-val {
+                color: var(--red);
+            }
+
+            /* TIMER BAR */
+            .tbar-wrap {
+                margin-bottom: 12px;
+            }
+
+            .tbar-row {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .tbar-lbl {
+                font-size: 11px;
+                color: var(--text3);
+                font-weight: 700;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                flex-shrink: 0;
+            }
+
+            .tbar-track {
+                flex: 1;
+                height: 7px;
+                background: var(--surface2);
+                border-radius: 4px;
+                overflow: hidden;
+            }
+
+            .tbar-fill {
+                height: 100%;
+                border-radius: 4px;
+                background: linear-gradient(90deg, var(--accent), var(--green));
+                transition: width 1s linear, background 0.5s;
+            }
+
+            .tbar-fill.w {
+                background: linear-gradient(90deg, var(--gold), #ff9933);
+            }
+
+            .tbar-fill.d {
+                background: linear-gradient(90deg, var(--red), #ff3333);
+            }
+
+            .tbar-num {
+                font-family: 'JetBrains Mono', monospace;
+                font-size: 22px;
+                font-weight: 800;
+                min-width: 42px;
+                text-align: right;
+                color: var(--accent2);
+                flex-shrink: 0;
+            }
+
+            .tbar-num.w {
+                color: var(--gold);
+            }
+
+            .tbar-num.d {
+                color: var(--red);
+            }
+
+            @keyframes pulse {
+
+                0%,
+                100% {
+                    transform: scale(1);
+                }
+
+                50% {
+                    transform: scale(1.1);
+                }
+            }
+
+            .tbar-num.d {
+                animation: pulse 0.5s ease-in-out infinite;
+            }
+
+            /* CONTROLS */
+            .ctrl-row {
+                display: flex;
+                gap: 8px;
+                flex-wrap: wrap;
+                margin-top: 6px;
+            }
+
+            .cbtn {
+                padding: 9px 16px;
+                background: var(--surface);
+                border: 1px solid var(--border);
+                border-radius: var(--r-md);
+                color: var(--text2);
+                cursor: pointer;
+                font-family: 'Syne', sans-serif;
+                font-size: 13px;
+                font-weight: 600;
+                transition: all 0.15s;
+                display: flex;
+                align-items: center;
+                gap: 6px;
+            }
+
+            .cbtn:hover {
+                border-color: var(--border2);
+                color: var(--text);
+                background: var(--surface2);
+            }
+
+            .cbtn:disabled {
+                opacity: 0.4;
+                cursor: default;
+            }
+
+            /* END SCREEN */
+            .end-hero {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            .end-emoji {
+                font-size: 52px;
+                margin-bottom: 8px;
+            }
+
+            .end-score {
+                font-size: 56px;
+                font-weight: 800;
+                letter-spacing: -2px;
+                font-family: 'JetBrains Mono', monospace;
+                background: linear-gradient(135deg, var(--text), var(--accent2));
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            .end-msg {
+                font-size: 15px;
+                color: var(--text2);
+                margin-top: 4px;
+            }
+
+            .end-stats {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 8px;
+                margin-bottom: 20px;
+            }
+
+            .esbox {
+                background: var(--bg3);
+                border: 1px solid var(--border);
+                border-radius: var(--r-md);
+                padding: 12px;
+                text-align: center;
+            }
+
+            .esbox .esv {
+                font-size: 22px;
+                font-weight: 800;
+                font-family: 'JetBrains Mono', monospace;
+                color: var(--text);
+            }
+
+            .esbox .esl {
+                font-size: 10px;
+                color: var(--text3);
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                margin-top: 2px;
+            }
+
+            .play-again {
+                width: 100%;
+                padding: 15px;
+                font-size: 15px;
+                font-weight: 700;
+                background: linear-gradient(135deg, var(--accent), #d97706);
+                border: none;
+                border-radius: var(--r-md);
+                color: #000;
+                cursor: pointer;
+                font-family: 'Syne', sans-serif;
+                transition: all 0.2s;
+            }
+
+            .play-again:hover {
+                transform: translateY(-1px);
+                box-shadow: 0 8px 24px var(--accent-glow);
+            }
+
+            /* FLASH */
+            .flash {
+                position: fixed;
+                inset: 0;
+                pointer-events: none;
+                z-index: 9990;
+            }
+
+            @keyframes fg {
+
+                0%,
+                100% {
+                    opacity: 0;
+                }
+
+                30% {
+                    opacity: 1;
+                    background: rgba(52, 211, 153, 0.08);
+                }
+            }
+
+            @keyframes fr {
+
+                0%,
+                100% {
+                    opacity: 0;
+                }
+
+                30% {
+                    opacity: 1;
+                    background: rgba(248, 113, 113, 0.09);
+                }
+            }
+
+            .flash.ok {
+                animation: fg 0.5s ease-out;
+            }
+
+            .flash.fail {
+                animation: fr 0.5s ease-out;
+            }
+
+            .toast {
+                position: fixed;
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%) translateY(-80px);
+                background: linear-gradient(135deg, var(--accent), #d97706);
+                color: #000;
+                padding: 11px 24px;
+                border-radius: 40px;
+                font-size: 14px;
+                font-weight: 700;
+                z-index: 9999;
+                transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+                pointer-events: none;
+            }
+
+            .toast.show {
+                transform: translateX(-50%) translateY(0);
+            }
+
+            .hidden {
+                display: none !important;
+            }
+
+            /* LIGHT MODE */
+            body.light {
+                --bg: #fefdf8;
+                --bg2: #f8f3e8;
+                --bg3: #f2ece0;
+                --surface: #fff;
+                --surface2: #faf5ea;
+                --border: rgba(180, 130, 0, 0.12);
+                --border2: rgba(180, 130, 0, 0.22);
+                --text: #1a1200;
+                --text2: #7a6000;
+                --text3: #b09030;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="wrap">
+            <div class="header">
+                <div>
+                    <div class="logo">⚖️ LawBlitz<span>Indian Constitution & BNS 2023</span></div>
+                </div>
+                <div class="hbtns"> <button class="ibtn" id="themeBtn" title="Toggle theme">☀️</button> <button
+                        class="ibtn" id="sfxBtn" title="Toggle sound">🔊</button> </div>
+            </div>
+            <div class="tabs" id="tabsRow"> <button class="tab active" data-tab="constitution">📜 Constitution</button>
+                <button class="tab" data-tab="bns">⚖️ BNS 2023</button> <button class="tab" data-tab="schedules">📋
+                    Schedules</button> <button class="tab" data-tab="quiz">🎯 Quiz</button> </div>
+            <!-- ═══════════ CONSTITUTION TAB ═══════════ -->
+            <div id="tab-constitution">
+                <div class="card">
+                    <div class="section-title">📜 Preamble</div>
+                    <div class="preamble-box"> <strong>WE, THE PEOPLE OF INDIA,</strong> having solemnly resolved to
+                        constitute India into a <strong>SOVEREIGN SOCIALIST SECULAR DEMOCRATIC REPUBLIC</strong> and to
+                        secure to all its citizens:<br><br> <strong>JUSTICE,</strong> social, economic and
+                        political;<br> <strong>LIBERTY</strong> of thought, expression, belief, faith and worship;<br>
+                        <strong>EQUALITY</strong> of status and of opportunity; and to promote among them all<br>
+                        <strong>FRATERNITY</strong> assuring the dignity of the individual and the <strong>unity and
+                            integrity of the Nation;</strong><br><br> IN OUR CONSTITUENT ASSEMBLY this
+                        <strong>twenty-sixth day of November, 1949,</strong> do HEREBY ADOPT, ENACT AND GIVE TO
+                        OURSELVES THIS CONSTITUTION. </div>
+                    <div style="font-size:11px;color:var(--text3);">448 Articles • 25 Parts • 12 Schedules • 106
+                        Amendments (latest: 2023) • Effective: 26 Jan 1950</div>
+                </div>
+                <div class="card">
+                    <div class="section-title">🔍 Search Articles</div>
+                    <div class="search-wrap"> <span class="search-icon">🔍</span> <input class="search-input"
+                            id="constSearch" placeholder="Search by article number or keyword…"> <span
+                            class="search-count" id="constCount"></span> </div>
+                    <div id="constList"></div>
+                </div>
+            </div> <!-- ═══════════ BNS TAB ═══════════ -->
+            <div id="tab-bns" class="hidden">
+                <div class="card">
+                    <div class="section-title">⚖️ About BNS 2023</div>
+                    <div style="font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:12px;"> The <strong
+                            style="color:var(--text)">Bharatiya Nyaya Sanhita, 2023</strong> (Act No. 45 of 2023)
+                        replaced the Indian Penal Code 1860. Enacted on 25 December 2023, effective from <strong
+                            style="color:var(--accent)">1 July 2024</strong>. Contains <strong
+                            style="color:var(--text)">358 sections</strong> across <strong style="color:var(--text)">20
+                            chapters</strong>. Key additions: organised crime, terrorism, community service as
+                        punishment. Sedition (IPC §124A) replaced by §152. </div>
+                    <div style="display:flex;gap:8px;flex-wrap:wrap;"> <span
+                            style="font-size:11px;padding:4px 10px;background:var(--green-dim);color:var(--green);border-radius:20px;font-weight:700;">✦
+                            358 Sections</span> <span
+                            style="font-size:11px;padding:4px 10px;background:var(--blue-dim);color:var(--blue);border-radius:20px;font-weight:700;">✦
+                            20 Chapters</span> <span
+                            style="font-size:11px;padding:4px 10px;background:var(--purple-dim);color:var(--purple);border-radius:20px;font-weight:700;">✦
+                            Replaces IPC 1860</span> <span
+                            style="font-size:11px;padding:4px 10px;background:var(--gold-dim);color:var(--gold);border-radius:20px;font-weight:700;">✦
+                            Effective 1 Jul 2024</span> </div>
+                </div>
+                <div class="card">
+                    <div class="section-title">🔍 Search BNS Sections</div>
+                    <div class="search-wrap"> <span class="search-icon">🔍</span> <input class="search-input"
+                            id="bnsSearch" placeholder="Search by section number or keyword…"> <span
+                            class="search-count" id="bnsCount"></span> </div>
+                    <div id="bnsList"></div>
+                </div>
+            </div> <!-- ═══════════ SCHEDULES TAB ═══════════ -->
+            <div id="tab-schedules" class="hidden">
+                <div class="card">
+                    <div class="section-title">📋 12 Schedules of the Indian Constitution</div>
+                    <div id="schedList"></div>
+                </div>
+                <div class="card" style="margin-top:16px;">
+                    <div class="section-title">📋 Key Constitutional Amendments</div>
+                    <div id="amendList"></div>
+                </div>
+            </div> <!-- ═══════════ QUIZ TAB ═══════════ -->
+            <div id="tab-quiz" class="hidden">
+                <div id="quizStart">
+                    <div class="card">
+                        <div class="section-title">🎯 Constitution & BNS Quiz</div>
+                        <p style="font-size:14px;color:var(--text2);margin-bottom:20px;">Test your knowledge of the
+                            Indian Constitution and BNS 2023. Choose your topic and difficulty.</p>
+                        <div class="section-title" style="margin-top:0">Topic</div>
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px;"
+                            id="topicSel">
+                            <div class="q-opt active"
+                                style="border-color:var(--accent);background:rgba(245,158,11,0.1);" data-topic="all">🎲
+                                All Topics</div>
+                            <div class="q-opt" data-topic="fundamental_rights">⚖️ Fundamental Rights</div>
+                            <div class="q-opt" data-topic="dpsp">🌿 DPSP</div>
+                            <div class="q-opt" data-topic="union">🏛️ Union Govt</div>
+                            <div class="q-opt" data-topic="emergency">🚨 Emergency</div>
+                            <div class="q-opt" data-topic="amendments">🔧 Amendments</div>
+                            <div class="q-opt" data-topic="bns_basic">⚖️ BNS Basics</div>
+                            <div class="q-opt" data-topic="bns_offences">🔴 BNS Offences</div>
+                            <div class="q-opt" data-topic="preamble">📜 Preamble & Parts</div>
+                            <div class="q-opt" data-topic="schedules">📋 Schedules</div>
+                            <div class="q-opt" data-topic="mixed">🔀 Mixed (All)</div>
+                        </div>
+                        <div class="section-title">Difficulty</div>
+                        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px;"
+                            id="diffSel">
+                            <div class="q-opt active"
+                                style="border-color:var(--accent);background:rgba(245,158,11,0.1);" data-diff="easy">🟢
+                                Easy</div>
+                            <div class="q-opt" data-diff="medium">🟡 Medium</div>
+                            <div class="q-opt" data-diff="hard">🔴 Hard (UPSC)</div>
+                        </div>
+                        <div class="section-title">Questions</div>
+                        <div style="display:flex;gap:8px;margin-bottom:20px;"> <select id="qcountSel"
+                                style="background:var(--surface2);border:1px solid var(--border2);border-radius:var(--r-sm);padding:8px 12px;color:var(--text);font-size:13px;font-family:'Syne',sans-serif;outline:none;">
+                                <option value="10">10 Questions</option>
+                                <option value="20" selected>20 Questions</option>
+                                <option value="30">30 Questions</option>
+                                <option value="50">50 Questions</option>
+                            </select> <select id="timerSel"
+                                style="background:var(--surface2);border:1px solid var(--border2);border-radius:var(--r-sm);padding:8px 12px;color:var(--text);font-size:13px;font-family:'Syne',sans-serif;outline:none;">
+                                <option value="0">No timer</option>
+                                <option value="30">30s per Q</option>
+                                <option value="45" selected>45s per Q</option>
+                                <option value="60">60s per Q</option>
+                            </select> </div> <button class="play-again" id="startQuizBtn">Start Quiz →</button>
+                    </div>
+                </div>
+                <div id="quizGame" class="hidden">
+                    <div class="quiz-stats">
+                        <div class="qs-box a">
+                            <div class="qs-val" id="qScore">0</div>
+                            <div class="qs-lbl">Score</div>
+                        </div>
+                        <div class="qs-box g">
+                            <div class="qs-val" id="qCorrect">0</div>
+                            <div class="qs-lbl">Correct</div>
+                        </div>
+                        <div class="qs-box r">
+                            <div class="qs-val" id="qWrong">0</div>
+                            <div class="qs-lbl">Wrong</div>
+                        </div>
+                        <div class="qs-box">
+                            <div class="qs-val" id="qNum">1</div>
+                            <div class="qs-lbl">Q #</div>
+                        </div>
+                    </div>
+                    <div class="tbar-wrap" id="tbarWrap">
+                        <div class="tbar-row"> <span class="tbar-lbl">Time</span>
+                            <div class="tbar-track">
+                                <div class="tbar-fill" id="tbarFill" style="width:100%"></div>
+                            </div> <span class="tbar-num" id="tbarNum">45</span>
+                        </div>
+                    </div>
+                    <div class="quiz-card">
+                        <div class="quiz-meta" id="qMeta"></div>
+                        <div class="q-text" id="qText">Loading…</div>
+                        <div class="q-opts" id="qOpts"></div>
+                        <div class="q-feedback" id="qFeedback"></div>
+                    </div>
+                    <div class="ctrl-row"> <button class="cbtn" id="skipQBtn">⏭ Skip</button> <button class="cbtn"
+                            id="quitQBtn">🚪 Quit</button> </div>
+                </div>
+                <div id="quizEnd" class="hidden">
+                    <div class="card">
+                        <div class="end-hero">
+                            <div class="end-emoji" id="endEmoji">🏆</div>
+                            <div class="end-score" id="endScore">0</div>
+                            <div class="end-msg" id="endMsg">Well done!</div>
+                        </div>
+                        <div class="end-stats">
+                            <div class="esbox">
+                                <div class="esv" id="endAcc">—</div>
+                                <div class="esl">Accuracy</div>
+                            </div>
+                            <div class="esbox">
+                                <div class="esv" id="endCorrect">0</div>
+                                <div class="esl">Correct</div>
+                            </div>
+                            <div class="esbox">
+                                <div class="esv" id="endTime">0s</div>
+                                <div class="esl">Avg Time</div>
+                            </div>
+                        </div>
+                        <div id="reviewList"
+                            style="margin-bottom:16px;max-height:280px;overflow-y:auto;display:grid;gap:6px;"></div>
+                        <button class="play-again" id="playAgainBtn">Play Again →</button>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /wrap -->
+        <div class="flash" id="flashEl"></div>
+        <div class="toast" id="toast">⬆ Level Up!</div>
+        <script src="script.js"></script>
+    </body>
+
+    </html>
